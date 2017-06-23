@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/security
+http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <http pattern="/site/**" security="none"/>
+    <http auto-config="true">
+        <intercept-url pattern="/admin/**" access="ROLE_USER" />
+        <form-login login-page="/site/Login.xhtml" default-target-url="/admin/index.xhtml"
+                    authentication-failure-url="/site/Login.xhtml?status=error" />
+        <logout logout-success-url="/site/Login.xhtml?status=logout" />
+    </http>
+
+
+    <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <user name="admin" password="pass" authorities="ROLE_USER, ROLE_ADMIN" />
+                <user name="user" password="pass" authorities="ROLE_USER" />
+            </user-service>
+
+        </authentication-provider>
+    </authentication-manager>
+
+    <!--
+    <authentication-manager>
+        <authentication-provider>
+            <jdbc-user-service data-source-ref="dataSource"
+                               users-by-username-query="select user_name, password, enabled from users where user_name = ?"
+                               authorities-by-username-query="select u.user_name, ur.authority from users u, user_roles ur where u.user_id = ur.user_id and u.user_name = ? " />
+        </authentication-provider>
+    </authentication-manager>
+
+    <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <beans:property name="url" value="jdbc:mysql://localhost:3306/admin_starter" />
+        <beans:property name="username" value="root" />
+        <beans:property name="password" value="" />
+    </beans:bean>
+    -->
+</beans:beans>
