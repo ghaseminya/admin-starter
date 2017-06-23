@@ -9,9 +9,10 @@ http://www.springframework.org/schema/security/spring-security.xsd">
     <http pattern="/site/**" security="none"/>
     <http auto-config="true">
         <intercept-url pattern="/admin/**" access="ROLE_USER" />
-        <form-login login-page="/site/Login.xhtml" default-target-url="/admin/index.xhtml"
-                    authentication-failure-url="/site/Login.xhtml?status=error" />
-        <logout logout-success-url="/site/Login.xhtml?status=logout" />
+        <intercept-url pattern="/user/**" access="ROLE_ADMIN" />
+        <form-login login-page="/Login.xhtml" default-target-url="/admin/index.xhtml"
+                    authentication-failure-url="/Login.xhtml?status=error" />
+        <logout logout-success-url="/Login.xhtml?status=logout" />
     </http>
 
 
