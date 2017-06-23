@@ -64,6 +64,18 @@
             <version>${springsecurity.version}</version>
         </dependency>
 
+        <!-- Spring JDBC dependency
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${springsecurity.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.34</version>
+        </dependency>
+        -->
     </dependencies>
     <repositories>
         <repository>
