@@ -42,12 +42,12 @@ public class LogonMB extends AdminSession implements Serializable {
     private boolean remember;
 
 
-    public void login() throws IOException {
+    public String login() throws Exception {
         currentUser = email;
         addDetailMessage("Logged in successfully as <b>" + email + "</b>");
         Faces.getExternalContext().getFlash().setKeepMessages(true);
         Faces.redirect("index.xhtml");
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+        ExternalContext context = Faces.getExternalContext();
 
         RequestDispatcher dispatcher = ((ServletRequest) context.getRequest()).getRequestDispatcher("/j_spring_security_check");
 

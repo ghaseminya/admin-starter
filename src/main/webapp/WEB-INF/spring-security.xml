@@ -8,8 +8,8 @@ http://www.springframework.org/schema/security/spring-security.xsd">
 
     <http pattern="/site/**" security="none"/>
     <http auto-config="true">
-        <intercept-url pattern="/admin/**" access="ROLE_USER" />
-        <intercept-url pattern="/user/**" access="ROLE_ADMIN" />
+        <intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+        <intercept-url pattern="/user/**" access="ROLE_USER" />
         <form-login login-page="/Login.xhtml" default-target-url="/admin/index.xhtml"
                     authentication-failure-url="/Login.xhtml?status=error" />
         <logout logout-success-url="/Login.xhtml?status=logout" />
@@ -19,8 +19,8 @@ http://www.springframework.org/schema/security/spring-security.xsd">
     <authentication-manager>
         <authentication-provider>
             <user-service>
-                <user name="admin" password="pass" authorities="ROLE_USER, ROLE_ADMIN" />
-                <user name="user" password="pass" authorities="ROLE_USER" />
+                <user name="admin@adminfaces" password="pass" authorities="ROLE_ADMIN" />
+                <user name="user@adminfaces" password="pass" authorities="ROLE_USER" />
             </user-service>
 
         </authentication-provider>
